@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login and Signup</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .toggle-link {
+      color: #3498db;
+      text-decoration: none;
+      margin-top: 15px;
+      display: block;
+      cursor: pointer;
+    }
+
+    .toggle-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="authContainer">
+    <h2>Login</h2>
+    <form id="loginForm" action="/login" method="post">
+      <label for="loginUsername">Username:</label>
+      <input type="text" id="loginUsername" name="username" required>
+
+      <label for="loginPassword">Password:</label>
+      <input type="password" id="loginPassword" name="password" required>
+
+      <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="javascript:void(0);" class="toggle-link" onclick="toggleForm('signupForm')">Sign up here</a>.</p>
+  </div>
+
+  <div class="container" id="signupForm" style="display: none;">
+    <h2>Signup</h2>
+    <form action="/signup" method="post">
+      <label for="signupUsername">Username:</label>
+      <input type="text" id="signupUsername" name="username" required>
+
+      <label for="signupEmail">Email:</label>
+      <input type="email" id="signupEmail" name="email" required>
+
+      <label for="signupPassword">Password:</label>
+      <input type="password" id="signupPassword" name="password" required>
+
+      <label for="role">Role:</label>
+      <select id="role" name="role" required>
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+      </select>
+
+      <div id="teacherFields" style="display: none;">
+        <label for="teacherType">Teacher Type:</label>
+        <select id="teacherType" name="teacherType">
+          <option value="hod">HOD</option>
+          <option value="classCoordinator">Class Coordinator</option>
+          <option value="subjectTeacher">Subject Teacher</option>
+        </select>
+      </div>
+
+      <button type="submit">Signup</button>
+    </form>
+    <p>Already have an account? <a href="javascript:void(0);" class="toggle-link" onclick="toggleForm('loginForm')">Login here</a>.</p>
+  </div>
+
+  <script>
+    function toggleForm(formId) {
+      const authContainer = document.getElementById('authContainer');
+      const loginForm = document.getElementById('loginForm');
+      const signupForm = document.getElementById('signupForm');
+
+      if (formId === 'loginForm') {
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+        authContainer.querySelector('h2').innerText = 'Login';
+      } else if (formId === 'signupForm') {
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+        authContainer.querySelector('h2').innerText = 'Signup';
+      }
+    }
+
+    // Initial call to set the initial state
+    toggleForm('loginForm');
+  </script>
+
+</body>
+</html>

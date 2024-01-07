@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance App Signup</title>
+  <link rel="stylesheet" href="/css/signup.css">
+</head>
+<body>
+
+  
+
+  <form action="/signup" method="post">
+    <h2>Signup Form</h2>
+    <!-- Common Fields -->
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required="true">
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="role">Role:</label>
+    <select id="role" name="role" required>
+      <option value="student">Student</option>
+      <option value="teacher">Teacher</option>
+    </select>
+
+    <!-- Teacher-Specific Fields -->
+    <div id="teacherFields" style="display: none;">
+      <label for="teacherType">Teacher Type:</label>
+      <select id="teacherType" name="teacherType">
+        <option value="hod">HOD</option>
+        <option value="classCoordinator">Class Coordinator</option>
+        <option value="subjectTeacher">Subject Teacher</option>
+      </select>
+    </div>
+
+    <button type="submit">Signup</button>
+    <p>Already have an account? <a href="/login">Login here</a>.</p>
+  </form>
+
+  <script src="/js/signup.js"></script>
+
+</body>
+</html>
