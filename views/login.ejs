@@ -16,12 +16,20 @@
 
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required>
+      
 
       <button type="submit">Login</button><a href="/forgot-password">Forgot Password</a>
+      <div><% if (messages.error) { %>
+        <p class="error"><%= messages.error %></p>
+      <% } else if (messages.success) { %>
+        <p class="success"><%= messages.success %></p>
+      <% } %></div>
       <p>Don't have an account? <a href="/signup">Sign up </a></p>
      
     </form>
-    
+    <!-- Display flash messages -->
+
+
   </div>
 </body>
 </html>
