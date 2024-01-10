@@ -19,7 +19,7 @@ app.use(express.static("public"));
 
 // Use session for authentication
 app.use(session({
-    secret: 'Nikhil1806',
+    secret: process.env.SESSION_SECRET || 'fallback-secret-key',
     resave: false,
     saveUninitialized: false
 }));

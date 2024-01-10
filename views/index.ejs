@@ -9,6 +9,7 @@
   <h1>Welcome <%= user ? user.username : 'Guest' %>!</h1>
   <% if (!user) { %>
     <p><a href="/login">Login</a></p>
+    <p><a href="/signup">Signup</a></p>
   <% } else { %>
     <p><a href="/logout">Logout</a></p>
   <% } %>
