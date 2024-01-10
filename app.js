@@ -7,7 +7,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 
 // Import the User model
-const User = require('./models/user');
+// const User = require('./models/user');
 
 const app = express();
 const port = 3000;
@@ -23,15 +23,18 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
 app.use(flash());
+
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 // Connecting to the database
-mongoose.connect('mongodb://127.0.0.1:27017/Attendance_App', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+// mongoose.connect('mongodb://127.0.0.1:27017/Attendance_App', {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// });
 
 
 
@@ -52,15 +55,6 @@ passport.use(new LocalStrategy({
     req.flash('error', 'Invalid username or password');
     return done(null, false);
 }));
-// app.post('/login', (req, res, next) => {
-//     passport.authenticate('local', {
-//         failureFlash: true,
-//     })(req, res, next);
-//     console.log(req.flash('error'));
-// });
-
-
-
 
 
 passport.serializeUser((user, done) => {
@@ -73,24 +67,8 @@ passport.deserializeUser((id, done) => {
     });
 });
 
-// Login route using passport.authenticate
-// app.post('/login', passport.authenticate('local', {
-//     failureFlash: true,
-// }), (req, res) => {
-//     // Remove successRedirect and failureRedirect for testing
-//     res.json(req.flash());
-// });
 
-app.post('/login', passport.authenticate('local', {
-    failureFlash: true,
-}), (req, res) => {
-    // Check if authentication was successful
-    if (req.isAuthenticated()) {
-        res.redirect('/');
-    } else {
-        res.json(req.flash());
-    }
-});
+app.post('/login', passport.authenticate('local', { failureFlash: true, }), (req, res) => { if (req.isAuthenticated()) { res.redirect('/'); } else { res.json(req.flash()); } });
 
 
 // Logout route
@@ -124,12 +102,7 @@ app.post('/login', async (req, res) => {
             console.log(isPasswordMatch);
 
             if (isPasswordMatch) {
-                // Store user information in the session
-                // req.session.user = {
-                //     id: user._id,
-                //     username: user.username,
-                //     email: user.email
-                // };
+               
 
                 req.flash('success', 'Successfully logged in!');
                 return res.redirect('/');
