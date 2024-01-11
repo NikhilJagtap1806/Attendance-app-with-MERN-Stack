@@ -31,10 +31,10 @@ app.use(passport.session());
 
 
 // Connecting to the database
-// mongoose.connect('mongodb://127.0.0.1:27017/Attendance_App', {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// });
+mongoose.connect('mongodb://127.0.0.1:27017/Attendance_App', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
 
 
 
